@@ -18,7 +18,7 @@ public class PostPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
-                R.layout.list_item_layout, container, false);
+                R.layout.item_layout, container, false);
 
         return rootView;
     }
