@@ -24,13 +24,13 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
         ButterKnife.bind(this);
-        contactsPresenter = new MainContactsPresenter(this);
-        contactsPresenter.onViewCreate();
         Intent intent = getIntent();
         int userId = intent.getIntExtra(MainActivity.USER_ID, 0);
         int postId = intent.getIntExtra(MainActivity.POST_ID, 0);
         toolbar.setTitle(getResources().getString(R.string.toolbar_title) + String.valueOf(userId));
         setSupportActionBar(toolbar);
+        contactsPresenter = new MainContactsPresenter(this);
+        contactsPresenter.onViewCreate(userId);
 
     }
 }

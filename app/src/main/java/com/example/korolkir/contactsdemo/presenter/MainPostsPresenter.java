@@ -3,8 +3,8 @@ package com.example.korolkir.contactsdemo.presenter;
 import android.content.Context;
 
 import com.example.korolkir.contactsdemo.model.Post;
-import com.example.korolkir.contactsdemo.model.PostsModel;
-import com.example.korolkir.contactsdemo.model.PostsRepository;
+import com.example.korolkir.contactsdemo.model.UserDataModel;
+import com.example.korolkir.contactsdemo.model.UserDataRepository;
 import com.example.korolkir.contactsdemo.view.PostsView;
 
 import java.io.File;
@@ -23,14 +23,14 @@ public class MainPostsPresenter implements PostsPresenter {
 
     private PostsView postsView;
     private Context context;
-    private PostsModel postsModel;
+    private UserDataModel userDataModel;
     private List<Post> postList;
 
     public MainPostsPresenter(final PostsView postsView) {
         this.postsView = postsView;
         this.context = (Context) postsView;
         postList = new ArrayList<>();
-        postsModel = new PostsRepository(this);
+        userDataModel = new UserDataRepository();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class MainPostsPresenter implements PostsPresenter {
 
     @Override
     public void onViewCreate() {
-        postsModel.getPostList()
+        userDataModel.getPostList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Post>>() {

@@ -1,7 +1,5 @@
 package com.example.korolkir.contactsdemo.model;
 
-import com.example.korolkir.contactsdemo.presenter.PostsPresenter;
-
 import java.util.List;
 
 import okhttp3.OkHttpClient;
@@ -15,14 +13,13 @@ import rx.schedulers.Schedulers;
 /**
  * Created by korolkir on 05.09.16.
  */
-public class PostsRepository  implements PostsModel {
+public class UserDataRepository implements UserDataModel {
 
     private Retrofit retrofit;
-    private PostsApi postsApi;
-    private PostsPresenter presenter;
+    private UserDataApi userDataApi;
 
-    public PostsRepository(PostsPresenter presenter) {
-        this.presenter = presenter;
+    public UserDataRepository() {
+
         RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -35,12 +32,17 @@ public class PostsRepository  implements PostsModel {
                 .addCallAdapterFactory(rxAdapter)
                 .build();
 
-        postsApi = retrofit.create(PostsApi.class);
+        userDataApi = retrofit.create(UserDataApi.class);
     }
 
     @Override
     public Observable<List<Post>> getPostList() {
-        return postsApi.getPostList();
+        return userDataApi.getPostList();
+    }
+
+    @Override
+    public Observable<Contact> getContact(int id) {
+        return userDataApi.getContact(String.valueOf(id));
     }
 
 }
