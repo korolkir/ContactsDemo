@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TableLayout
         android:id="@+id/table_layout"
         android:layout_width="match_parent"
@@ -13,16 +13,16 @@
             android:layout_height="match_parent"
             android:layout_margin="2dp">
             <TextView
-                style="@style/IdItem"
-                android:text="Row 2\n\nColumn 1"/>
+                android:id="@+id/item_1"
+                style="@style/IdItem"/>
             <TextView
+                android:id="@+id/item_2"
                 style="@style/IdItem"
                 android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:text="Row 2\n\nColumn 2"/>
+                android:layout_marginRight="2dp"/>
             <TextView
-                style="@style/IdItem"
-                android:text="Row 2\n\nColumn 3"/>
+                android:id="@+id/item_3"
+                style="@style/IdItem"/>
         </TableRow>
         <TableRow
             android:id="@+id/row_2"
@@ -32,16 +32,16 @@
             android:layout_marginRight="2dp"
             android:layout_marginBottom="2dp">
             <TextView
-                style="@style/IdItem"
-                android:text="Row 2\n\nColumn 1"/>
+                android:id="@+id/item_4"
+                style="@style/IdItem"/>
             <TextView
+                android:id="@+id/item_5"
                 style="@style/IdItem"
                 android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
-                android:text="Row 2\n\nColumn 2"/>
+                android:layout_marginRight="2dp"/>
             <TextView
-                style="@style/IdItem"
-                android:text="Row 2\n\nColumn 3"/>
+                android:id="@+id/item_6"
+                style="@style/IdItem"/>
         </TableRow>
     </TableLayout>
 </LinearLayout>

@@ -5,13 +5,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.korolkir.contactsdemo.model.Post;
 import com.example.korolkir.contactsdemo.presenter.ContactsPresenter;
 import com.example.korolkir.contactsdemo.presenter.Presenter;
 import com.example.korolkir.contactsdemo.view.PostItemsPagerAdapter;
+import com.example.korolkir.contactsdemo.view.PostPageFragment;
 import com.example.korolkir.contactsdemo.view.ShowingView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,8 +26,9 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity implements ShowingView {
 
-    private PagerAdapter pagerAdapter;
+    private PostItemsPagerAdapter pagerAdapter;
     private Presenter presenter;
+    List<Post> postList;
 
     @BindView(R.id.pager)
     ViewPager viewPager;
@@ -35,15 +42,25 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), 3);
+        postList = new ArrayList<>();
+        pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList);
         viewPager.setAdapter(pagerAdapter);
         indicator.setViewPager(viewPager);
         presenter = new ContactsPresenter(this);
+        presenter.onViewCreated();
 
     }
 
     @OnClick(R.id.save_logcat_button)
     public void saveLog(View view) {
         presenter.onSaveLogcatButtonClick();
+    }
+
+    @Override
+    public void showPosts(List<Post> posts) {
+        postList.clear();
+        pagerAdapter.addItems(posts);
+        pagerAdapter.notifyDataSetChanged();
+        indicator.getDataSetObserver().onChanged();
     }
 }
