@@ -26,6 +26,7 @@ public class MainContactsPresenter implements ContactsPresenter {
 
     @Override
     public void onViewCreate(int userId) {
+        contactsView.showPostId();
         userDataModel.getContact(userId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -43,6 +44,12 @@ public class MainContactsPresenter implements ContactsPresenter {
             @Override
             public void onNext(Contact contact) {
                 Log.i("Contact", contact.getName());
+                contactsView.showUserName(contact.getName());
+                contactsView.showUserNickname(contact.getUsername());
+                contactsView.showUserEmail(contact.getEmail());
+                contactsView.showUserWebsite(contact.getWebsite());
+                contactsView.showUserPhone(contact.getPhone());
+                contactsView.showUserCity(contact.getAddress().getCity());
             }
         });
     }
