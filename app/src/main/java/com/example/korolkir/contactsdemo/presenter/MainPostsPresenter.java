@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.korolkir.contactsdemo.model.Post;
 import com.example.korolkir.contactsdemo.model.PostsModel;
 import com.example.korolkir.contactsdemo.model.PostsRepository;
-import com.example.korolkir.contactsdemo.view.ShowingView;
+import com.example.korolkir.contactsdemo.view.PostsView;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,14 +21,14 @@ import rx.schedulers.Schedulers;
  */
 public class MainPostsPresenter implements PostsPresenter {
 
-    private ShowingView showingView;
+    private PostsView postsView;
     private Context context;
     private PostsModel postsModel;
     private List<Post> postList;
 
-    public MainPostsPresenter(final ShowingView showingView) {
-        this.showingView = showingView;
-        this.context = (Context) showingView;
+    public MainPostsPresenter(final PostsView postsView) {
+        this.postsView = postsView;
+        this.context = (Context) postsView;
         postList = new ArrayList<>();
         postsModel = new PostsRepository(this);
     }
@@ -43,11 +43,11 @@ public class MainPostsPresenter implements PostsPresenter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        showingView.showLogFileName(fileName);
+        postsView.showLogFileName(fileName);
     }
 
     @Override
-    public void onViewCreated() {
+    public void onViewCreate() {
         postsModel.getPostList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -65,7 +65,7 @@ public class MainPostsPresenter implements PostsPresenter {
                     @Override
                     public void onNext(List<Post> posts) {
                         postList.addAll(posts);
-                        showingView.showPosts(posts);
+                        postsView.showPosts(posts);
                     }
                 });
     }
@@ -73,7 +73,7 @@ public class MainPostsPresenter implements PostsPresenter {
     @Override
     public void onPostItemClicked(int id) {
 
-        showingView.startActivityForId(id,getUserId(id));
+        postsView.startActivityForId(id,getUserId(id));
     }
 
     private int getUserId(int id) {

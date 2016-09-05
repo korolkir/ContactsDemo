@@ -11,7 +11,7 @@ public interface PostsPresenter {
 
     void onSaveLogcatButtonClick();
 
-    void onViewCreated();
+    void onViewCreate();
 
     void onPostItemClicked(int id);
 }

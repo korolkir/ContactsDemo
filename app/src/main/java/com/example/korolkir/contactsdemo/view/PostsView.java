@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by korolkir on 04.09.16.
  */
-public interface ShowingView {
+public interface PostsView {
 
     void showPosts(List<Post> posts);
 

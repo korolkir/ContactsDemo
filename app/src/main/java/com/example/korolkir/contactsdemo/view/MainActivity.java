@@ -21,8 +21,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.relex.circleindicator.CircleIndicator;
 
-public class MainActivity extends AppCompatActivity implements ShowingView {
+public class MainActivity extends AppCompatActivity implements PostsView {
 
+    public static final String USER_ID  = "userId";
+    public static final String POST_ID  = "postId";
     private PostItemsPagerAdapter pagerAdapter;
     private PostsPresenter presenter;
     List<Post> postList;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
         pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList, presenter);
         viewPager.setAdapter(pagerAdapter);
         indicator.setViewPager(viewPager);
-        presenter.onViewCreated();
+        presenter.onViewCreate();
 
     }
 
@@ -69,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
     @Override
     public void startActivityForId(int postId, int userId) {
         Intent intent = new Intent(this, ContactActivity.class);
-        intent.putExtra("postId", postId);
-        intent.putExtra("userId", userId);
+        intent.putExtra(POST_ID, postId);
+        intent.putExtra(USER_ID, userId);
         startActivity(intent);
     }
 }
