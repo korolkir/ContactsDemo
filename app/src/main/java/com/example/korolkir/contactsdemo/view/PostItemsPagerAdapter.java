@@ -9,6 +9,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import com.example.korolkir.contactsdemo.model.Post;
+import com.example.korolkir.contactsdemo.presenter.FragmentPresenter;
+import com.example.korolkir.contactsdemo.presenter.PostsFragmentPresenter;
+import com.example.korolkir.contactsdemo.presenter.Presenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +26,11 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
     private int numberOfPages;
     private List<Post> postList;
     private List<PostPageFragment> fragmentList;
+    private Presenter presenter;
 
-    public PostItemsPagerAdapter(FragmentManager fm, List<Post> postList) {
+    public PostItemsPagerAdapter(FragmentManager fm, List<Post> postList, Presenter presenter) {
         super(fm);
+        this.presenter = presenter;
         this.postList = postList;
         numberOfPages = postList.size();
         fragmentList = new ArrayList<>();
@@ -62,6 +67,7 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
                 values.putString(String.valueOf(textViewIndex),String.valueOf(postList.get(itemIndex).getId()));
                 values.putString(String.valueOf(textViewIndex) + TITLE_KEY,String.valueOf(postList.get(itemIndex).getTitle()));
                 fragment.setArguments(values);
+                fragment.attachPresenter(presenter);
                 values = new Bundle();
                 textViewIndex = 0;
                 fragmentList.add(fragment);

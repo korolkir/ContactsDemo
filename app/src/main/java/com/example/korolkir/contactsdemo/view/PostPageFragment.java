@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.model.Post;
+import com.example.korolkir.contactsdemo.presenter.Presenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +22,11 @@ import butterknife.ButterKnife;
 /**
  * Created by korolkir on 04.09.16.
  */
-public class PostPageFragment extends Fragment {
+public class PostPageFragment extends Fragment implements View.OnClickListener {
 
     private static final int TITLE_LENGHT = 10;
     private List<TextView> viewList;
+    private Presenter presenter;
 
     @BindView(R.id.item_1)
     TextView item1;
@@ -52,6 +54,7 @@ public class PostPageFragment extends Fragment {
         viewList.add(item4);
         viewList.add(item5);
         viewList.add(item6);
+        setOnClickListeners();
         Bundle values = getArguments();
         if(!values.isEmpty()) {
             setValues(values);
@@ -64,6 +67,25 @@ public class PostPageFragment extends Fragment {
             viewList.get(index).setText(values.getString(String.valueOf(index))+ "\n\n" +
             values.getString(String.valueOf(index) + PostItemsPagerAdapter.TITLE_KEY).substring(0,0 + TITLE_LENGHT));
         }
+    }
+
+    private void setOnClickListeners() {
+        for(TextView view: viewList) {
+            view.setOnClickListener(this);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        TextView view = (TextView) v;
+        presenter.onPostItemClicked(view.getText().toString().substring(view.getLayout()
+                .getLineStart(0),view.getLayout().getLineEnd(0)));
+        Log.i("DVD", view.getText().toString().substring(view.getLayout().getLineStart(0),view.getLayout().getLineEnd(0)));
+    }
+
+    public void attachPresenter(Presenter presenter) {
+        this.presenter = presenter;
+        Log.i("Presenter", "Atached");
     }
 }
 

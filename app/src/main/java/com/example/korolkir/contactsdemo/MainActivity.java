@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         postList = new ArrayList<>();
-        pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList);
+        presenter = new ContactsPresenter(this);
+        pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList, presenter);
         viewPager.setAdapter(pagerAdapter);
         indicator.setViewPager(viewPager);
-        presenter = new ContactsPresenter(this);
         presenter.onViewCreated();
 
     }
@@ -67,6 +67,6 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
 
     @Override
     public void showLogFileName(String fileName) {
-        Toast.makeText(this, R.string.log_saved + " " + fileName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,  getResources().getString(R.string.log_saved) + " " + fileName, Toast.LENGTH_SHORT).show();
     }
 }

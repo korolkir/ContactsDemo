@@ -71,6 +71,11 @@ public class ContactsPresenter implements Presenter {
                 });
     }
 
+    @Override
+    public void onPostItemClicked(String id) {
+        Log.i("Presenter", id);
+    }
+
 }
 
 

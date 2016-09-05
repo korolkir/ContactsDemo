@@ -13,4 +13,5 @@ public interface Presenter {
 
     void onViewCreated();
 
+    void onPostItemClicked(String id);
 }
