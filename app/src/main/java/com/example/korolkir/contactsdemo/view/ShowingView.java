@@ -10,4 +10,6 @@ import java.util.List;
 public interface ShowingView {
 
     void showPosts(List<Post> posts);
+
+    void showLogFileName(String fileName);
 }

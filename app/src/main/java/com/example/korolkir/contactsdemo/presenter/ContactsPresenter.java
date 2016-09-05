@@ -45,6 +45,7 @@ public class ContactsPresenter implements Presenter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        showingView.showLogFileName(fileName);
     }
 
     @Override

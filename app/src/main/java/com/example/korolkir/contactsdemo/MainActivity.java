@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.korolkir.contactsdemo.model.Post;
 import com.example.korolkir.contactsdemo.presenter.ContactsPresenter;
@@ -62,5 +63,10 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
         pagerAdapter.addItems(posts);
         pagerAdapter.notifyDataSetChanged();
         indicator.getDataSetObserver().onChanged();
+    }
+
+    @Override
+    public void showLogFileName(String fileName) {
+        Toast.makeText(this, R.string.log_saved + " " + fileName, Toast.LENGTH_SHORT).show();
     }
 }

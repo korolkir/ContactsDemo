@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ContactsDemo</string>
+    <string name="log_saved">Log saved in file</string>
 </resources>
