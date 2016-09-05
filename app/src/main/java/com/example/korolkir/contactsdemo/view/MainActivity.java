@@ -1,21 +1,17 @@
-package com.example.korolkir.contactsdemo;
+package com.example.korolkir.contactsdemo.view;
 
-import android.support.v4.view.PagerAdapter;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.model.Post;
-import com.example.korolkir.contactsdemo.presenter.ContactsPresenter;
-import com.example.korolkir.contactsdemo.presenter.Presenter;
-import com.example.korolkir.contactsdemo.view.PostItemsPagerAdapter;
-import com.example.korolkir.contactsdemo.view.PostPageFragment;
-import com.example.korolkir.contactsdemo.view.ShowingView;
+import com.example.korolkir.contactsdemo.presenter.MainPostsPresenter;
+import com.example.korolkir.contactsdemo.presenter.PostsPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +24,7 @@ import me.relex.circleindicator.CircleIndicator;
 public class MainActivity extends AppCompatActivity implements ShowingView {
 
     private PostItemsPagerAdapter pagerAdapter;
-    private Presenter presenter;
+    private PostsPresenter presenter;
     List<Post> postList;
 
     @BindView(R.id.pager)
@@ -44,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         postList = new ArrayList<>();
-        presenter = new ContactsPresenter(this);
+        presenter = new MainPostsPresenter(this);
         pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList, presenter);
         viewPager.setAdapter(pagerAdapter);
         indicator.setViewPager(viewPager);
@@ -68,5 +64,13 @@ public class MainActivity extends AppCompatActivity implements ShowingView {
     @Override
     public void showLogFileName(String fileName) {
         Toast.makeText(this,  getResources().getString(R.string.log_saved) + " " + fileName, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void startActivityForId(int postId, int userId) {
+        Intent intent = new Intent(this, ContactActivity.class);
+        intent.putExtra("postId", postId);
+        intent.putExtra("userId", userId);
+        startActivity(intent);
     }
 }

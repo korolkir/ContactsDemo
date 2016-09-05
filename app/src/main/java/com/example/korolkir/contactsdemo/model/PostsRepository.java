@@ -1,8 +1,6 @@
 package com.example.korolkir.contactsdemo.model;
 
-import android.util.Log;
-
-import com.example.korolkir.contactsdemo.presenter.Presenter;
+import com.example.korolkir.contactsdemo.presenter.PostsPresenter;
 
 import java.util.List;
 
@@ -12,8 +10,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
@@ -23,9 +19,9 @@ public class PostsRepository  implements PostsModel {
 
     private Retrofit retrofit;
     private PostsApi postsApi;
-    private Presenter presenter;
+    private PostsPresenter presenter;
 
-    public PostsRepository(Presenter presenter) {
+    public PostsRepository(PostsPresenter presenter) {
         this.presenter = presenter;
         RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

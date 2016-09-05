@@ -1,19 +1,15 @@
 package com.example.korolkir.contactsdemo.presenter;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.TextView;
 
-import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.model.Post;
 import com.example.korolkir.contactsdemo.model.PostsModel;
 import com.example.korolkir.contactsdemo.model.PostsRepository;
 import com.example.korolkir.contactsdemo.view.ShowingView;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import rx.Subscriber;
@@ -23,15 +19,17 @@ import rx.schedulers.Schedulers;
 /**
  * Created by korolkir on 04.09.16.
  */
-public class ContactsPresenter implements Presenter {
+public class MainPostsPresenter implements PostsPresenter {
 
     private ShowingView showingView;
     private Context context;
     private PostsModel postsModel;
+    private List<Post> postList;
 
-    public ContactsPresenter(final ShowingView showingView) {
+    public MainPostsPresenter(final ShowingView showingView) {
         this.showingView = showingView;
         this.context = (Context) showingView;
+        postList = new ArrayList<>();
         postsModel = new PostsRepository(this);
     }
 
@@ -66,14 +64,26 @@ public class ContactsPresenter implements Presenter {
 
                     @Override
                     public void onNext(List<Post> posts) {
+                        postList.addAll(posts);
                         showingView.showPosts(posts);
                     }
                 });
     }
 
     @Override
-    public void onPostItemClicked(String id) {
-        Log.i("Presenter", id);
+    public void onPostItemClicked(int id) {
+
+        showingView.startActivityForId(id,getUserId(id));
+    }
+
+    private int getUserId(int id) {
+        int userId = 0;
+        for(Post post: postList) {
+            if (post.getId() == id) {
+                userId = post.getUserId();
+            }
+        }
+        return userId;
     }
 
 }

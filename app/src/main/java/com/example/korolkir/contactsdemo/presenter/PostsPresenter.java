@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * Created by korolkir on 04.09.16.
  */
-public interface Presenter {
+public interface PostsPresenter {
 
     void onSaveLogcatButtonClick();
 
     void onViewCreated();
 
-    void onPostItemClicked(String id);
+    void onPostItemClicked(int id);
 }

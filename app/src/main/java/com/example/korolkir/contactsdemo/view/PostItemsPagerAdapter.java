@@ -1,17 +1,14 @@
 package com.example.korolkir.contactsdemo.view;
 
 import android.os.Bundle;
-import android.renderscript.Sampler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
 import com.example.korolkir.contactsdemo.model.Post;
-import com.example.korolkir.contactsdemo.presenter.FragmentPresenter;
-import com.example.korolkir.contactsdemo.presenter.PostsFragmentPresenter;
-import com.example.korolkir.contactsdemo.presenter.Presenter;
+
+import com.example.korolkir.contactsdemo.presenter.PostsPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +23,9 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
     private int numberOfPages;
     private List<Post> postList;
     private List<PostPageFragment> fragmentList;
-    private Presenter presenter;
+    private PostsPresenter presenter;
 
-    public PostItemsPagerAdapter(FragmentManager fm, List<Post> postList, Presenter presenter) {
+    public PostItemsPagerAdapter(FragmentManager fm, List<Post> postList, PostsPresenter presenter) {
         super(fm);
         this.presenter = presenter;
         this.postList = postList;

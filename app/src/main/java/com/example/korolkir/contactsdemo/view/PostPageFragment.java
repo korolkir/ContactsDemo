@@ -3,15 +3,13 @@ package com.example.korolkir.contactsdemo.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.korolkir.contactsdemo.R;
-import com.example.korolkir.contactsdemo.model.Post;
-import com.example.korolkir.contactsdemo.presenter.Presenter;
+import com.example.korolkir.contactsdemo.presenter.PostsPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +24,7 @@ public class PostPageFragment extends Fragment implements View.OnClickListener {
 
     private static final int TITLE_LENGHT = 10;
     private List<TextView> viewList;
-    private Presenter presenter;
+    private PostsPresenter presenter;
 
     @BindView(R.id.item_1)
     TextView item1;
@@ -78,14 +76,13 @@ public class PostPageFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         TextView view = (TextView) v;
-        presenter.onPostItemClicked(view.getText().toString().substring(view.getLayout()
-                .getLineStart(0),view.getLayout().getLineEnd(0)));
-        Log.i("DVD", view.getText().toString().substring(view.getLayout().getLineStart(0),view.getLayout().getLineEnd(0)));
+        String postId = view.getText().toString().substring(view.getLayout()
+                .getLineStart(0),view.getLayout().getLineEnd(0));
+        presenter.onPostItemClicked(Integer.parseInt(postId.replaceAll("\\s+", "")));
     }
 
-    public void attachPresenter(Presenter presenter) {
+    public void attachPresenter(PostsPresenter presenter) {
         this.presenter = presenter;
-        Log.i("Presenter", "Atached");
     }
 }
 

@@ -12,4 +12,6 @@ public interface ShowingView {
     void showPosts(List<Post> posts);
 
     void showLogFileName(String fileName);
+
+    void startActivityForId(int id, int userId);
 }
