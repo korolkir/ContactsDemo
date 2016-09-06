@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.util.Linkify;
+import android.util.Log;
+import android.util.Patterns;
 import android.widget.TextView;
 
 import com.example.korolkir.contactsdemo.R;
@@ -61,22 +64,23 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
 
     @Override
     public void showUserEmail(String email) {
-        this.email.setText(email);
+        this.email.setText(getResources().getString(R.string.email_text) +  " " + email);
     }
 
     @Override
     public void showUserWebsite(String website) {
-        this.website.setText(website);
+        this.website.setText(getResources().getString(R.string.website_text) + " " + website);
     }
 
     @Override
     public void showUserPhone(String phone) {
-        this.phone.setText(phone);
+        this.phone.setText(getResources().getString(R.string.phone_text) + " " + phone);
+        Linkify.addLinks(this.phone, Patterns.PHONE, "tel:");
     }
 
     @Override
     public void showUserCity(String city) {
-        this.city.setText(city);
+        this.city.setText(getResources().getString(R.string.city_text) + " " + city);
     }
 
     @Override

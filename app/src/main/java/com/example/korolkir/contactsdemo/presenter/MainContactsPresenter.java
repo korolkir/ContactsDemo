@@ -48,7 +48,7 @@ public class MainContactsPresenter implements ContactsPresenter {
                 contactsView.showUserNickname(contact.getUsername());
                 contactsView.showUserEmail(contact.getEmail());
                 contactsView.showUserWebsite(contact.getWebsite());
-                contactsView.showUserPhone(contact.getPhone());
+                contactsView.showUserPhone(contact.getPhone().split(" ")[0]);
                 contactsView.showUserCity(contact.getAddress().getCity());
             }
         });

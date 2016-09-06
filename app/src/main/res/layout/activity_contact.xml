@@ -73,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="10dp"
+                android:autoLink="email"
                 android:textColor="@color/idItemTextColor"
                 android:textSize="20sp"
                 android:layout_alignParentTop="true"
@@ -83,6 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:autoLink="web"
                 android:padding="10dp"
                 android:textColor="@color/idItemTextColor"
                 android:textSize="20sp"
@@ -97,6 +99,8 @@
                 android:padding="10dp"
                 android:textColor="@color/idItemTextColor"
                 android:textSize="20sp"
+                android:linksClickable="true"
+                android:clickable="true"
                 android:layout_below="@+id/website"
                 android:text="Phone"/>
             <TextView
@@ -106,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="10dp"
+                android:autoLink="map"
                 android:textSize="20sp"
                 android:textColor="@color/idItemTextColor"
                 android:layout_below="@+id/phone"

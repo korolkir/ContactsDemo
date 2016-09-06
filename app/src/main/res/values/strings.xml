@@ -2,4 +2,8 @@
     <string name="app_name">ContactsDemo</string>
     <string name="log_saved">Log saved in file</string>
     <string name="toolbar_title">contact #</string>
+    <string name="email_text">Email:</string>
+    <string name="phone_text">Phone:</string>
+    <string name="website_text">Website:</string>
+    <string name="city_text">City:</string>
 </resources>
