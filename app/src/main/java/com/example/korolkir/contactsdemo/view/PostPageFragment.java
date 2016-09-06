@@ -52,10 +52,11 @@ public class PostPageFragment extends Fragment implements View.OnClickListener {
         viewList.add(item4);
         viewList.add(item5);
         viewList.add(item6);
-        setOnClickListeners();
+        //setOnClickListeners();
         Bundle values = getArguments();
         if(!values.isEmpty()) {
             setValues(values);
+            setOnClickListeners(values.size()/2);
         }
         return rootView;
     }
@@ -72,6 +73,13 @@ public class PostPageFragment extends Fragment implements View.OnClickListener {
             view.setOnClickListener(this);
         }
     }
+
+    private void setOnClickListeners(int number) {
+        for(int i = 0; i < number; i++) {
+            viewList.get(i).setOnClickListener(this);
+        }
+    }
+
 
     @Override
     public void onClick(View v) {

@@ -59,8 +59,9 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
         Bundle values = new Bundle();
         int textViewIndex = 0;
         for (int itemIndex = 0; itemIndex < postList.size(); itemIndex++) {
-            if(itemIndex%(ITEMS_PER_PAGE*(numberOfPages + 1) - 1) == 0 && itemIndex != 0) {
+            if(itemIndex%(ITEMS_PER_PAGE * (numberOfPages + 1) - 1) == 0 && itemIndex != 0) {
                 PostPageFragment fragment = new PostPageFragment();
+
                 values.putString(String.valueOf(textViewIndex),String.valueOf(postList.get(itemIndex).getId()));
                 values.putString(String.valueOf(textViewIndex) + TITLE_KEY,String.valueOf(postList.get(itemIndex).getTitle()));
                 fragment.setArguments(values);
@@ -76,6 +77,7 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
                 values.putString(String.valueOf(textViewIndex) + TITLE_KEY,String.valueOf(postList.get(itemIndex).getTitle()));
 
                 fragment.setArguments(values);
+                fragment.attachPresenter(presenter);
                 fragmentList.add(fragment);
                 numberOfPages++;
                 notifyDataSetChanged();
