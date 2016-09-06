@@ -9,6 +9,7 @@ import android.text.util.Linkify;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.presenter.ContactsPresenter;
@@ -17,6 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ContactActivity extends AppCompatActivity implements ContactsView {
 
@@ -105,4 +107,21 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
         intent.putExtra(LNG, lng);
         startActivity(intent);
     }
+
+    @Override
+    public void savedSuccessfully() {
+        Toast.makeText(this, getResources().getString(R.string.save_successfull), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void saveError() {
+        Toast.makeText(this, getResources().getString(R.string.save_error
+        ), Toast.LENGTH_SHORT).show();
+    }
+
+    @OnClick(R.id.save_bd)
+    public void saveLog(View view) {
+        contactsPresenter.onSaveBdButtonClick();
+    }
+
 }

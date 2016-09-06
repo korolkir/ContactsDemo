@@ -8,4 +8,5 @@ public interface ContactsPresenter {
 
     void cityClicked();
 
+    void onSaveBdButtonClick();
 }

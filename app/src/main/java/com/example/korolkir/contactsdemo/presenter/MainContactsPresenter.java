@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.example.korolkir.contactsdemo.model.Contact;
+import com.example.korolkir.contactsdemo.model.ContactsDbHelper;
 import com.example.korolkir.contactsdemo.model.Geo;
 import com.example.korolkir.contactsdemo.model.UserDataModel;
 import com.example.korolkir.contactsdemo.model.UserDataRepository;
@@ -27,6 +28,7 @@ public class MainContactsPresenter implements ContactsPresenter {
     private UserDataModel userDataModel;
     private Contact currentContact;
     private Context context;
+    private ContactsDbHelper contactsDbHelper;
 
     public MainContactsPresenter(ContactsView contactsView) {
         this.contactsView = contactsView;
@@ -69,5 +71,18 @@ public class MainContactsPresenter implements ContactsPresenter {
         Geo geo = currentContact.getAddress().getGeo();
         String uri = String.format(Locale.ENGLISH, "geo:%f,%f", geo.getLat(), geo.getLng());
         contactsView.openMap(geo.getLat(), geo.getLng());
+    }
+
+    @Override
+    public void onSaveBdButtonClick() {
+        if(contactsDbHelper == null) {
+            contactsDbHelper = new ContactsDbHelper(context);
+        }
+        if(contactsDbHelper.addContact(currentContact)) {
+            contactsView.savedSuccessfully();
+        } else {
+            contactsView.saveError();
+        }
+        Log.i("Database", String.valueOf(contactsDbHelper.getAllContacts().size()));
     }
 }

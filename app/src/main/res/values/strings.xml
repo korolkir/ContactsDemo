@@ -6,4 +6,6 @@
     <string name="phone_text">Phone:</string>
     <string name="website_text">Website:</string>
     <string name="city_text">City:</string>
+    <string name="save_successfull">Contact successfully saved</string>
+    <string name="save_error">Contact is already saved</string>
 </resources>

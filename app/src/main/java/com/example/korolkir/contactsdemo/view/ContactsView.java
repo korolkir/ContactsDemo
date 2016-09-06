@@ -21,4 +21,8 @@ public interface ContactsView {
     void showPostId();
 
     void openMap(double lat, double lng);
+
+    void savedSuccessfully();
+
+    void saveError();
 }
