@@ -5,4 +5,7 @@ package com.example.korolkir.contactsdemo.presenter;
  */
 public interface ContactsPresenter {
     void onViewCreate(int userId);
+
+    void cityClicked();
+
 }

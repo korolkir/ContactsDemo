@@ -20,7 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ContactActivity"></activity>
+        <activity android:name=".view.ContactActivity" />
+        <activity android:name=".view.MapActivity">
+        </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDbIyOJ1KJw9k7rc_5ZuuLSVJWSUQl25n8"/>
     </application>
+
 
 </manifest>

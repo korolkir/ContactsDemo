@@ -18,4 +18,5 @@ public interface ContactsView {
 
     void showPostId();
 
+    void openMap();
 }

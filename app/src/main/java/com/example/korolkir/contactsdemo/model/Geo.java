@@ -10,17 +10,17 @@ public class Geo {
 
     @SerializedName("lat")
     @Expose
-    private String lat;
+    private double lat;
     @SerializedName("lng")
     @Expose
-    private String lng;
+    private double lng;
 
     /**
      *
      * @return
      * The lat
      */
-    public String getLat() {
+    public double getLat() {
         return lat;
     }
 
@@ -29,7 +29,7 @@ public class Geo {
      * @param lat
      * The lat
      */
-    public void setLat(String lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
@@ -38,7 +38,7 @@ public class Geo {
      * @return
      * The lng
      */
-    public String getLng() {
+    public double getLng() {
         return lng;
     }
 
@@ -47,7 +47,7 @@ public class Geo {
      * @param lng
      * The lng
      */
-    public void setLng(String lng) {
+    public void setLng(double lng) {
         this.lng = lng;
     }
 

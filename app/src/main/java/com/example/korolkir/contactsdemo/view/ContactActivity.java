@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.korolkir.contactsdemo.R;
@@ -50,6 +51,12 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
         setSupportActionBar(toolbar);
         contactsPresenter = new MainContactsPresenter(this);
         contactsPresenter.onViewCreate(userId);
+        city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contactsPresenter.cityClicked();
+            }
+        });
     }
 
     @Override
@@ -86,5 +93,11 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
     @Override
     public void showPostId() {
         postIdView.setText(String.valueOf(postId));
+    }
+
+    @Override
+    public void openMap() {
+        Intent intent = new Intent(this,MapActivity.class);
+        startActivity(intent);
     }
 }
