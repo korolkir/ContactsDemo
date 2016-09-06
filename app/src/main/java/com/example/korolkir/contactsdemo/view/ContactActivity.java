@@ -1,11 +1,11 @@
 package com.example.korolkir.contactsdemo.view;
 
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
@@ -13,12 +13,15 @@ import android.widget.TextView;
 import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.presenter.ContactsPresenter;
 import com.example.korolkir.contactsdemo.presenter.MainContactsPresenter;
+import com.google.android.gms.maps.model.LatLng;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ContactActivity extends AppCompatActivity implements ContactsView {
 
+    protected static final String LAT = "lat";
+    protected static final String LNG = "lng";
     private ContactsPresenter contactsPresenter;
     private int postId;
 
@@ -96,8 +99,10 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
     }
 
     @Override
-    public void openMap() {
-        Intent intent = new Intent(this,MapActivity.class);
+    public void openMap(double lat, double lng) {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(LAT, lat);
+        intent.putExtra(LNG, lng);
         startActivity(intent);
     }
 }

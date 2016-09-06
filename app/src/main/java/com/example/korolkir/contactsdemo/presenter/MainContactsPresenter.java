@@ -10,6 +10,7 @@ import com.example.korolkir.contactsdemo.model.Geo;
 import com.example.korolkir.contactsdemo.model.UserDataModel;
 import com.example.korolkir.contactsdemo.model.UserDataRepository;
 import com.example.korolkir.contactsdemo.view.ContactsView;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Locale;
 
@@ -67,6 +68,6 @@ public class MainContactsPresenter implements ContactsPresenter {
     public void cityClicked() {
         Geo geo = currentContact.getAddress().getGeo();
         String uri = String.format(Locale.ENGLISH, "geo:%f,%f", geo.getLat(), geo.getLng());
-        contactsView.openMap();
+        contactsView.openMap(geo.getLat(), geo.getLng());
     }
 }

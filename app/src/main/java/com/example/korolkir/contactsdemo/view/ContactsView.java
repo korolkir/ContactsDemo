@@ -1,5 +1,7 @@
 package com.example.korolkir.contactsdemo.view;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by korolkir on 05.09.16.
  */
@@ -18,5 +20,5 @@ public interface ContactsView {
 
     void showPostId();
 
-    void openMap();
+    void openMap(double lat, double lng);
 }
