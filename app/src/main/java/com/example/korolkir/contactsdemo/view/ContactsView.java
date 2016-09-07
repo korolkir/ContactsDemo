@@ -18,4 +18,6 @@ public interface ContactsView {
 
 
     void showContactInfo(Contact contact);
+
+    void stopShowingProgress();
 }

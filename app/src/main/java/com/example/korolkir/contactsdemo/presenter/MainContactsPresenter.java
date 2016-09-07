@@ -57,6 +57,7 @@ public class MainContactsPresenter implements ContactsPresenter {
             public void onNext(Contact contact) {
                 currentContact = contact;
                 contactsView.showContactInfo(contact);
+                contactsView.stopShowingProgress();
             }
         });
     }

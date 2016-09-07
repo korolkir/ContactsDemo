@@ -13,6 +13,7 @@ import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.model.Post;
 import com.example.korolkir.contactsdemo.presenter.MainPostsPresenter;
 import com.example.korolkir.contactsdemo.presenter.PostsPresenter;
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements PostsView {
     CircleIndicator indicator;
     @BindView(R.id.save_logcat_button)
     CircleButton saveButton;
+    @BindView(R.id.progress_view)
+    CircularProgressView progressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,5 +84,12 @@ public class MainActivity extends AppCompatActivity implements PostsView {
         intent.putExtra(POST_ID, postId);
         intent.putExtra(USER_ID, userId);
         startActivity(intent);
+    }
+
+    @Override
+    public void stopShowingProgress() {
+        progressView.stopAnimation();
+        progressView.setVisibility(View.GONE);
+        viewPager.setVisibility(View.VISIBLE);
     }
 }

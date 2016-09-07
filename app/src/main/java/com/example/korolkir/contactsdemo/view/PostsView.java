@@ -14,4 +14,6 @@ public interface PostsView {
     void showLogSavingResult(String fileName);
 
     void showPostWithId(int id, int userId);
+
+    void stopShowingProgress();
 }

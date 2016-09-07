@@ -1,7 +1,6 @@
 package com.example.korolkir.contactsdemo.view;
 
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.util.Linkify;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +16,7 @@ import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.model.Contact;
 import com.example.korolkir.contactsdemo.presenter.ContactsPresenter;
 import com.example.korolkir.contactsdemo.presenter.MainContactsPresenter;
-import com.google.android.gms.maps.model.LatLng;
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +45,12 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
     TextView city;
     @BindView(R.id.post_id)
     TextView postIdView;
+    @BindView(R.id.name_layout)
+    LinearLayout nameLinear;
+    @BindView(R.id.details_layout)
+    LinearLayout detailsLinear;
+    @BindView(R.id.progress_view)
+    CircularProgressView progressView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +98,9 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
 
     @Override
     public void showContactInfo(Contact contact) {
+        detailsLinear.setVisibility(View.VISIBLE);
+        nameLinear.setVisibility(View.VISIBLE);
+        postIdView.setVisibility(View.VISIBLE);
         Resources res = getResources();
         name.setText(contact.getName());
         nickname.setText(contact.getUsername());
@@ -100,6 +109,12 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
         Linkify.addLinks(this.phone, Patterns.PHONE, "tel:");
         website.setText(String.format(res.getString(R.string.website_text), contact.getWebsite()));
         city.setText(String.format(res.getString(R.string.city_text), contact.getAddress().getCity()));
+    }
+
+    @Override
+    public void stopShowingProgress() {
+        progressView.stopAnimation();
+        progressView.setVisibility(View.GONE);
     }
 
     @OnClick(R.id.save_bd)

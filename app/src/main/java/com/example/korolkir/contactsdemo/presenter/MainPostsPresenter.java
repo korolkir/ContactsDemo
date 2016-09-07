@@ -105,6 +105,7 @@ public class MainPostsPresenter implements PostsPresenter {
                     public void onNext(List<Post> posts) {
                         postList.addAll(posts);
                         postsView.showPosts(posts);
+                        postsView.stopShowingProgress();
                     }
                 });
     }
