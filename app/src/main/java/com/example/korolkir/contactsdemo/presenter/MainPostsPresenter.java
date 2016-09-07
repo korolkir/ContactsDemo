@@ -1,6 +1,8 @@
 package com.example.korolkir.contactsdemo.presenter;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.util.Log;
 
 import com.example.korolkir.contactsdemo.model.Post;
 import com.example.korolkir.contactsdemo.model.UserDataModel;
@@ -36,7 +38,7 @@ public class MainPostsPresenter implements PostsPresenter {
     }
 
     @Override
-    public void onSaveLogcatButtonClick() {
+    public void onSaveLog() {
         saveLog().subscribe(new Subscriber<Boolean>() {
             @Override
             public void onCompleted() {
@@ -80,34 +82,39 @@ public class MainPostsPresenter implements PostsPresenter {
             Process process = Runtime.getRuntime().exec("logcat -f "+outputFile.getAbsolutePath());
             return true;
         } catch (IOException e) {
+            Log.i("FileSav", e.toString());
             e.printStackTrace();
         }
         return false;
     }
 
     @Override
-    public void onViewCreate() {
-        userDataModel.getPostList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<List<Post>>() {
-                    @Override
-                    public void onCompleted() {
+    public void loadPostData() {
+        if(isNetworkConnected()) {
+            userDataModel.getPostList()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<List<Post>>() {
+                        @Override
+                        public void onCompleted() {
+                            unsubscribe();
+                        }
 
-                    }
+                        @Override
+                        public void onError(Throwable e) {
 
-                    @Override
-                    public void onError(Throwable e) {
+                        }
 
-                    }
-
-                    @Override
-                    public void onNext(List<Post> posts) {
-                        postList.addAll(posts);
-                        postsView.showPosts(posts);
-                        postsView.stopShowingProgress();
-                    }
-                });
+                        @Override
+                        public void onNext(List<Post> posts) {
+                            postList.addAll(posts);
+                            postsView.showPosts(posts);
+                            postsView.stopShowingProgress();
+                        }
+                    });
+        } else {
+            postsView.askToEnableNetwork();
+        }
     }
 
     @Override
@@ -124,6 +131,11 @@ public class MainPostsPresenter implements PostsPresenter {
             }
         }
         return userId;
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null;
     }
 
 }

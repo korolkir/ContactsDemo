@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface PostsPresenter {
 
-    void onSaveLogcatButtonClick();
+    void onSaveLog();
 
-    void onViewCreate();
+    void loadPostData();
 
     void onPostItemClicked(int id);
 }

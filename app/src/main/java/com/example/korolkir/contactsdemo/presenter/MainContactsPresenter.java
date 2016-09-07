@@ -2,6 +2,7 @@ package com.example.korolkir.contactsdemo.presenter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.util.Log;
 
@@ -80,4 +81,5 @@ public class MainContactsPresenter implements ContactsPresenter {
         }
         Log.i("Database", String.valueOf(contactsDbHelper.getAllContacts().size()));
     }
+
 }

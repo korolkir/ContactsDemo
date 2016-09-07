@@ -16,4 +16,6 @@ public interface PostsView {
     void showPostWithId(int id, int userId);
 
     void stopShowingProgress();
+
+    void askToEnableNetwork();
 }

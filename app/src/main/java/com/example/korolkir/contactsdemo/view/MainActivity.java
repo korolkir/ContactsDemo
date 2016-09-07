@@ -1,14 +1,15 @@
 package com.example.korolkir.contactsdemo.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -57,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements PostsView {
         pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList, presenter);
         viewPager.setAdapter(pagerAdapter);
         indicator.setViewPager(viewPager);
-        presenter.onViewCreate();
+        presenter.loadPostData();
     }
 
     @OnClick(R.id.save_logcat_button)
     public void saveLog(View view) {
-        presenter.onSaveLogcatButtonClick();
+        presenter.onSaveLog();
     }
 
     @Override
@@ -96,6 +97,22 @@ public class MainActivity extends AppCompatActivity implements PostsView {
         progressView.stopAnimation();
         progressView.setVisibility(View.GONE);
         viewPager.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void askToEnableNetwork() {
+        AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
+        alertdialog.setTitle(getResources().getString(R.string.internet_enable_asking_dialog_title));
+        alertdialog.setMessage(getResources().getString(R.string.internet_enable_asking_dialog_message));
+        alertdialog.setNeutralButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                presenter.loadPostData();
+            }
+        });
+        alertdialog.setCancelable(false);
+        alertdialog.show();
     }
 
     public void startImageAnimation() {
