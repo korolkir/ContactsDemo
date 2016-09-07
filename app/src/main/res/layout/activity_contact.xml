@@ -126,10 +126,10 @@
         android:layout_height="60dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
         android:src="@drawable/ic_action_tick"
-        app:cb_color="#99CC00"
+        app:cb_color="@color/colorAccent"
         app:cb_pressedRingWidth="8dip" />
 
 </RelativeLayout>
