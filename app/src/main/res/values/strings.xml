@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ContactsDemo</string>
-    <string name="log_saved">Log saved in file</string>
+    <string name="log_saved_success">Log saved in file %1$s</string>
+    <string name="log_saved_error">Error in log saving</string>
     <string name="toolbar_title">contact #%1$d</string>
     <string name="email_text">Email: %1$s</string>
     <string name="phone_text">Phone: %1$s</string>

@@ -1,6 +1,7 @@
 package com.example.korolkir.contactsdemo.view;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,12 +65,17 @@ public class MainActivity extends AppCompatActivity implements PostsView {
     }
 
     @Override
-    public void showLogFileName(String fileName) {
-        Toast.makeText(this,  getResources().getString(R.string.log_saved) + " " + fileName, Toast.LENGTH_SHORT).show();
+    public void showLogSavingResult(String fileName) {
+        Resources res = getResources();
+        if(fileName != null) {
+            Toast.makeText(this, String.format(res.getString(R.string.log_saved_success), fileName), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, res.getString(R.string.log_saved_error), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
-    public void startActivityForId(int postId, int userId) {
+    public void showPostWithId(int postId, int userId) {
         Intent intent = new Intent(this, ContactActivity.class);
         intent.putExtra(POST_ID, postId);
         intent.putExtra(USER_ID, userId);

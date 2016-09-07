@@ -11,7 +11,7 @@ public interface PostsView {
 
     void showPosts(List<Post> posts);
 
-    void showLogFileName(String fileName);
+    void showLogSavingResult(String fileName);
 
-    void startActivityForId(int id, int userId);
+    void showPostWithId(int id, int userId);
 }
