@@ -118,16 +118,18 @@
                 android:layout_marginBottom="5dp"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/save_bd"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
 
-            />
 
+    <at.markushi.ui.CircleButton
+        android:id="@+id/save_bd"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/ic_action_tick"
+        app:cb_color="#99CC00"
+        app:cb_pressedRingWidth="8dip" />
 
 </RelativeLayout>
