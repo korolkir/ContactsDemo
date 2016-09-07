@@ -69,7 +69,6 @@ public class MainContactsPresenter implements ContactsPresenter {
     @Override
     public void cityClicked() {
         Geo geo = currentContact.getAddress().getGeo();
-        String uri = String.format(Locale.ENGLISH, "geo:%f,%f", geo.getLat(), geo.getLng());
         contactsView.openMap(geo.getLat(), geo.getLng());
     }
 

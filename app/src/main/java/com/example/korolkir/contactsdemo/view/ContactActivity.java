@@ -52,7 +52,7 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
         Intent intent = getIntent();
         int userId = intent.getIntExtra(MainActivity.USER_ID, 0);
         postId = intent.getIntExtra(MainActivity.POST_ID, 0);
-        toolbar.setTitle(getResources().getString(R.string.toolbar_title) + String.valueOf(userId));
+        toolbar.setTitle(String.format(getResources().getString(R.string.toolbar_title), userId));
         setSupportActionBar(toolbar);
         contactsPresenter = new MainContactsPresenter(this);
         contactsPresenter.onViewCreate(userId);
@@ -76,23 +76,24 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
 
     @Override
     public void showUserEmail(String email) {
-        this.email.setText(getResources().getString(R.string.email_text) +  " " + email);
+        this.email.setText(String.format(getResources().getString(R.string.email_text), email));
+
     }
 
     @Override
     public void showUserWebsite(String website) {
-        this.website.setText(getResources().getString(R.string.website_text) + " " + website);
+        this.website.setText(String.format(getResources().getString(R.string.website_text), website));
     }
 
     @Override
     public void showUserPhone(String phone) {
-        this.phone.setText(getResources().getString(R.string.phone_text) + " " + phone);
+        this.phone.setText(String.format(getResources().getString(R.string.phone_text), phone));
         Linkify.addLinks(this.phone, Patterns.PHONE, "tel:");
     }
 
     @Override
     public void showUserCity(String city) {
-        this.city.setText(getResources().getString(R.string.city_text) + " " + city);
+        this.city.setText(String.format(getResources().getString(R.string.city_text), city));
     }
 
     @Override

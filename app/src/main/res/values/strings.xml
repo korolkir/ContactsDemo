@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">ContactsDemo</string>
     <string name="log_saved">Log saved in file</string>
-    <string name="toolbar_title">contact #</string>
-    <string name="email_text">Email:</string>
-    <string name="phone_text">Phone:</string>
-    <string name="website_text">Website:</string>
-    <string name="city_text">City:</string>
+    <string name="toolbar_title">contact #%1$d</string>
+    <string name="email_text">Email: %1$s</string>
+    <string name="phone_text">Phone: %1$s</string>
+    <string name="website_text">Website: %1$s</string>
+    <string name="city_text">City: %1$s</string>
     <string name="save_successfull">Contact successfully saved</string>
     <string name="save_error">Contact is already saved</string>
 </resources>
