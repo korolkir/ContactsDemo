@@ -6,7 +6,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.korolkir.contactsdemo.R;
@@ -40,19 +43,21 @@ public class MainActivity extends AppCompatActivity implements PostsView {
     CircleButton saveButton;
     @BindView(R.id.progress_view)
     CircularProgressView progressView;
+    @BindView(R.id.main_image)
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        startImageAnimation();
         postList = new ArrayList<>();
         presenter = new MainPostsPresenter(this);
         pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList, presenter);
         viewPager.setAdapter(pagerAdapter);
         indicator.setViewPager(viewPager);
         presenter.onViewCreate();
-
     }
 
     @OnClick(R.id.save_logcat_button)
@@ -91,5 +96,10 @@ public class MainActivity extends AppCompatActivity implements PostsView {
         progressView.stopAnimation();
         progressView.setVisibility(View.GONE);
         viewPager.setVisibility(View.VISIBLE);
+    }
+
+    public void startImageAnimation() {
+        Animation rotate = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        image.startAnimation(rotate);
     }
 }
