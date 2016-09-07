@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
@@ -22,22 +23,11 @@ import butterknife.ButterKnife;
  */
 public class PostPageFragment extends Fragment implements View.OnClickListener {
 
-    private static final int TITLE_LENGHT = 10;
-    private List<TextView> viewList;
+    private static final int TITLE_LENGTH = 10;
     private PostsPresenter presenter;
 
-    @BindView(R.id.item_1)
-    TextView item1;
-    @BindView(R.id.item_2)
-    TextView item2;
-    @BindView(R.id.item_3)
-    TextView item3;
-    @BindView(R.id.item_4)
-    TextView item4;
-    @BindView(R.id.item_5)
-    TextView item5;
-    @BindView(R.id.item_6)
-    TextView item6;
+    @BindViews({R.id.item_1, R.id.item_2, R.id.item_3, R.id.item_4, R.id.item_5, R.id.item_6 })
+    List<TextView> viewList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,14 +35,6 @@ public class PostPageFragment extends Fragment implements View.OnClickListener {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.item_layout, container, false);
         ButterKnife.bind(this,rootView);
-        viewList = new ArrayList<>();
-        viewList.add(item1);
-        viewList.add(item2);
-        viewList.add(item3);
-        viewList.add(item4);
-        viewList.add(item5);
-        viewList.add(item6);
-        //setOnClickListeners();
         Bundle values = getArguments();
         if(!values.isEmpty()) {
             setValues(values);
@@ -64,13 +46,7 @@ public class PostPageFragment extends Fragment implements View.OnClickListener {
     private void setValues(Bundle values) {
         for (int index = 0; index < values.size()/2; index++) {
             viewList.get(index).setText(values.getString(String.valueOf(index))+ "\n\n" +
-            values.getString(String.valueOf(index) + PostItemsPagerAdapter.TITLE_KEY).substring(0,0 + TITLE_LENGHT));
-        }
-    }
-
-    private void setOnClickListeners() {
-        for(TextView view: viewList) {
-            view.setOnClickListener(this);
+            values.getString(String.valueOf(index) + PostItemsPagerAdapter.TITLE_KEY).substring(0,0 + TITLE_LENGTH));
         }
     }
 

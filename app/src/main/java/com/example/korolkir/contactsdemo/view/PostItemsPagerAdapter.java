@@ -56,36 +56,29 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
     public void addItems(List<Post> posts) {
         postList.clear();
         postList.addAll(posts);
-        Bundle values = new Bundle();
-        int textViewIndex = 0;
-        for (int itemIndex = 0; itemIndex < postList.size(); itemIndex++) {
-            if(itemIndex%(ITEMS_PER_PAGE * (numberOfPages + 1) - 1) == 0 && itemIndex != 0) {
-                PostPageFragment fragment = new PostPageFragment();
-
-                values.putString(String.valueOf(textViewIndex),String.valueOf(postList.get(itemIndex).getId()));
-                values.putString(String.valueOf(textViewIndex) + TITLE_KEY,String.valueOf(postList.get(itemIndex).getTitle()));
-                fragment.setArguments(values);
-                fragment.attachPresenter(presenter);
-                values = new Bundle();
-                textViewIndex = 0;
-                fragmentList.add(fragment);
-                numberOfPages++;
-                notifyDataSetChanged();
-            } else if(itemIndex == postList.size() - 1) {
-                PostPageFragment fragment = new PostPageFragment();
-                values.putString(String.valueOf(textViewIndex),String.valueOf(postList.get(itemIndex).getId()));
-                values.putString(String.valueOf(textViewIndex) + TITLE_KEY,String.valueOf(postList.get(itemIndex).getTitle()));
-
-                fragment.setArguments(values);
-                fragment.attachPresenter(presenter);
-                fragmentList.add(fragment);
-                numberOfPages++;
-                notifyDataSetChanged();
-            } else {
-                values.putString(String.valueOf(textViewIndex), String.valueOf(postList.get(itemIndex).getId()));
-                values.putString(String.valueOf(textViewIndex) + TITLE_KEY, postList.get(itemIndex).getTitle());
-                textViewIndex++;
-            }
+        while (postList.size() > ITEMS_PER_PAGE) {
+            addFragmentToList(ITEMS_PER_PAGE);
         }
+        addFragmentToList(postList.size());
     }
+
+    private void addFragmentToList(int numberOfItemsInFragment) {
+        PostPageFragment fragment = new PostPageFragment();
+        fragment.setArguments(getValuesForFragment(numberOfItemsInFragment));
+        fragment.attachPresenter(presenter);
+        fragmentList.add(fragment);
+        numberOfPages++;
+        notifyDataSetChanged();
+    }
+
+    private Bundle getValuesForFragment(int size) {
+        Bundle values = new Bundle();
+        for (int index = 0; index < size; index++) {
+            values.putString(String.valueOf(index), String.valueOf(postList.get(0).getId()));
+            values.putString(String.valueOf(index) + TITLE_KEY,String.valueOf(postList.get(0).getTitle()));
+            postList.remove(0);
+        }
+        return values;
+    }
+
 }

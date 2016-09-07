@@ -28,12 +28,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Intent intent = getIntent();
         location = new LatLng(intent.getDoubleExtra(ContactActivity.LAT, 0),
                 intent.getDoubleExtra(ContactActivity.LNG, 0));
-        MapFragment mapFragment = MapFragment.newInstance();
-        FragmentTransaction fragmentTransaction =
-                getFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.map_container, mapFragment);
-        fragmentTransaction.commit();
-        mapFragment.getMapAsync(this);
+        initMap();
     }
 
     @Override
@@ -41,5 +36,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         googleMap.clear();
         googleMap.addMarker(new MarkerOptions().position(location).title("User place"));
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 16));
+    }
+
+    private void initMap() {
+        MapFragment mapFragment = MapFragment.newInstance();
+        FragmentTransaction fragmentTransaction =
+                getFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.map_container, mapFragment);
+        fragmentTransaction.commit();
+        mapFragment.getMapAsync(this);
     }
 }
