@@ -56,12 +56,7 @@ public class MainContactsPresenter implements ContactsPresenter {
             @Override
             public void onNext(Contact contact) {
                 currentContact = contact;
-                contactsView.showUserName(contact.getName());
-                contactsView.showUserNickname(contact.getUsername());
-                contactsView.showUserEmail(contact.getEmail());
-                contactsView.showUserWebsite(contact.getWebsite());
-                contactsView.showUserPhone(contact.getPhone().split(" ")[0]);
-                contactsView.showUserCity(contact.getAddress().getCity());
+                contactsView.showContactInfo(contact);
             }
         });
     }

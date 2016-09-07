@@ -2,6 +2,7 @@ package com.example.korolkir.contactsdemo.view;
 
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.korolkir.contactsdemo.R;
+import com.example.korolkir.contactsdemo.model.Contact;
 import com.example.korolkir.contactsdemo.presenter.ContactsPresenter;
 import com.example.korolkir.contactsdemo.presenter.MainContactsPresenter;
 import com.google.android.gms.maps.model.LatLng;
@@ -65,38 +67,6 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
     }
 
     @Override
-    public void showUserName(String name) {
-        this.name.setText(name);
-    }
-
-    @Override
-    public void showUserNickname(String username) {
-        nickname.setText(username);
-    }
-
-    @Override
-    public void showUserEmail(String email) {
-        this.email.setText(String.format(getResources().getString(R.string.email_text), email));
-
-    }
-
-    @Override
-    public void showUserWebsite(String website) {
-        this.website.setText(String.format(getResources().getString(R.string.website_text), website));
-    }
-
-    @Override
-    public void showUserPhone(String phone) {
-        this.phone.setText(String.format(getResources().getString(R.string.phone_text), phone));
-        Linkify.addLinks(this.phone, Patterns.PHONE, "tel:");
-    }
-
-    @Override
-    public void showUserCity(String city) {
-        this.city.setText(String.format(getResources().getString(R.string.city_text), city));
-    }
-
-    @Override
     public void showPostId() {
         postIdView.setText(String.valueOf(postId));
     }
@@ -118,6 +88,18 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
     public void saveError() {
         Toast.makeText(this, getResources().getString(R.string.save_error
         ), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showContactInfo(Contact contact) {
+        Resources res = getResources();
+        name.setText(contact.getName());
+        nickname.setText(contact.getUsername());
+        email.setText(String.format(res.getString(R.string.email_text), contact.getEmail()));
+        phone.setText(String.format(res.getString(R.string.phone_text), contact.getPhone().split(" ")[0]));
+        Linkify.addLinks(this.phone, Patterns.PHONE, "tel:");
+        website.setText(String.format(res.getString(R.string.website_text), contact.getWebsite()));
+        city.setText(String.format(res.getString(R.string.city_text), contact.getAddress().getCity()));
     }
 
     @OnClick(R.id.save_bd)

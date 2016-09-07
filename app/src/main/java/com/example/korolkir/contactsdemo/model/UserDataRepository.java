@@ -15,6 +15,7 @@ import rx.schedulers.Schedulers;
  */
 public class UserDataRepository implements UserDataModel {
 
+    private static final String BASE_URL = "http://jsonplaceholder.typicode.com/";
     private Retrofit retrofit;
     private UserDataApi userDataApi;
 
@@ -26,7 +27,7 @@ public class UserDataRepository implements UserDataModel {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://jsonplaceholder.typicode.com/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .addCallAdapterFactory(rxAdapter)
