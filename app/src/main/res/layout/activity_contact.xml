@@ -118,8 +118,6 @@
                 android:layout_marginBottom="5dp"/>
         </LinearLayout>
 
-
-
     <at.markushi.ui.CircleButton
         android:id="@+id/save_bd"
         android:layout_width="60dp"
@@ -131,5 +129,4 @@
         android:src="@drawable/ic_action_tick"
         app:cb_color="@color/colorAccent"
         app:cb_pressedRingWidth="8dip" />
-
 </RelativeLayout>

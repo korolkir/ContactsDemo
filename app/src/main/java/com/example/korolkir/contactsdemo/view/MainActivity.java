@@ -17,6 +17,7 @@ import com.example.korolkir.contactsdemo.presenter.PostsPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
+import at.markushi.ui.CircleButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements PostsView {
     @BindView(R.id.indicator)
     CircleIndicator indicator;
     @BindView(R.id.save_logcat_button)
-    Button saveButton;
+    CircleButton saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
