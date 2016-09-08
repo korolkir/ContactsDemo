@@ -45,16 +45,16 @@
             app:cpv_indeterminate="true" />
         <android.support.v4.view.ViewPager
             android:id="@+id/pager"
-            android:visibility="gone"
+            android:visibility="invisible"
+            android:layout_alignBottom="@+id/indicator"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/indicator"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
-
-
-
 </LinearLayout>
