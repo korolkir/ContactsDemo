@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.korolkir.contactsdemo.ContactsApplication;
 import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.model.Post;
 import com.example.korolkir.contactsdemo.presenter.MainPostsPresenter;
@@ -21,6 +22,8 @@ import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import at.markushi.ui.CircleButton;
 import butterknife.BindView;
@@ -33,9 +36,11 @@ public class MainActivity extends AppCompatActivity implements PostsView {
     public static final String USER_ID  = "userId";
     public static final String POST_ID  = "postId";
     private PostItemsPagerAdapter pagerAdapter;
-    private PostsPresenter presenter;
     List<Post> postList;
 
+
+
+    @Inject PostsPresenter presenter;
     @BindView(R.id.pager)
     ViewPager viewPager;
     @BindView(R.id.indicator)
@@ -52,9 +57,10 @@ public class MainActivity extends AppCompatActivity implements PostsView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        ((ContactsApplication) getApplication()).getPresenterComponent().inject(this);
         startImageAnimation();
         postList = new ArrayList<>();
-        presenter = new MainPostsPresenter(this);
+        //presenter = new MainPostsPresenter(this);
         pagerAdapter = new PostItemsPagerAdapter(getSupportFragmentManager(), postList, presenter);
         viewPager.setAdapter(pagerAdapter);
         indicator.setViewPager(viewPager);

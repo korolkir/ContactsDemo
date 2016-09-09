@@ -28,9 +28,8 @@ public class MainPostsPresenter implements PostsPresenter {
     private Context context;
     private UserDataModel userDataModel;
     private List<Post> postList;
-    private String logFileName;
 
-    public MainPostsPresenter(final PostsView postsView) {
+    public MainPostsPresenter() {
         this.postsView = postsView;
         this.context = (Context) postsView;
         postList = new ArrayList<>();
@@ -39,7 +38,7 @@ public class MainPostsPresenter implements PostsPresenter {
 
     @Override
     public void onSaveLog() {
-        saveLog().subscribe(new Subscriber<Boolean>() {
+        saveLog().subscribe(new Subscriber<String>() {
             @Override
             public void onCompleted() {
                 unsubscribe();
@@ -51,9 +50,9 @@ public class MainPostsPresenter implements PostsPresenter {
             }
 
             @Override
-            public void onNext(Boolean aBoolean) {
-                if (aBoolean) {
-                    postsView.showLogSavingResult(logFileName);
+            public void onNext(String filemame) {
+                if (filemame != null) {
+                    postsView.showLogSavingResult(filemame);
                 } else {
                     postsView.showLogSavingResult(null);
                 }
@@ -61,11 +60,11 @@ public class MainPostsPresenter implements PostsPresenter {
         });
     }
 
-    private Observable<Boolean> saveLog() {
-        Observable<Boolean> save = Observable.create(
-                new Observable.OnSubscribe<Boolean>() {
+    private Observable<String> saveLog() {
+        Observable<String> save = Observable.create(
+                new Observable.OnSubscribe<String>() {
                     @Override
-                    public void call(Subscriber<? super Boolean> subscriber) {
+                    public void call(Subscriber<? super String> subscriber) {
                         subscriber.onNext(saveLogInFile());
                     }
                 })
@@ -74,18 +73,18 @@ public class MainPostsPresenter implements PostsPresenter {
         return save;
     }
 
-    private Boolean saveLogInFile() {
-        logFileName = "logcat_"+System.currentTimeMillis()+".txt";
+    private String saveLogInFile() {
+        String logFileName = "logcat_"+System.currentTimeMillis()+".txt";
         File outputFile = new File(context.getExternalCacheDir(), logFileName);
         try {
             @SuppressWarnings("unused")
             Process process = Runtime.getRuntime().exec("logcat -f "+outputFile.getAbsolutePath());
-            return true;
+            return logFileName;
         } catch (IOException e) {
             Log.i("FileSav", e.toString());
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -124,13 +123,12 @@ public class MainPostsPresenter implements PostsPresenter {
     }
 
     private int getUserId(int id) {
-        int userId = 0;
         for(Post post: postList) {
             if (post.getId() == id) {
-                userId = post.getUserId();
+               return post.getUserId();
             }
         }
-        return userId;
+        return 0;
     }
 
     private boolean isNetworkConnected() {

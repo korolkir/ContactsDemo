@@ -62,7 +62,7 @@ public class ContactActivity extends AppCompatActivity implements ContactsView {
         postId = intent.getIntExtra(MainActivity.POST_ID, 0);
         toolbar.setTitle(String.format(getResources().getString(R.string.toolbar_title), userId));
         setSupportActionBar(toolbar);
-        contactsPresenter = new MainContactsPresenter(this);
+        //contactsPresenter = new MainContactsPresenter(this);
         contactsPresenter.onViewCreate(userId);
         city.setOnClickListener(new View.OnClickListener() {
             @Override

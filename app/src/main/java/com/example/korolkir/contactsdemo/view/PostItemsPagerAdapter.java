@@ -16,11 +16,11 @@ import java.util.List;
 /**
  * Created by korolkir on 04.09.16.
  */
+   // new Instance for fragments
 public class PostItemsPagerAdapter extends FragmentPagerAdapter {
 
     private static final int ITEMS_PER_PAGE = 6;
     protected static final String TITLE_KEY  = "T";
-    private int numberOfPages;
     private List<Post> postList;
     private List<PostPageFragment> fragmentList;
     private PostsPresenter presenter;
@@ -29,7 +29,6 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         this.presenter = presenter;
         this.postList = postList;
-        numberOfPages = postList.size();
         fragmentList = new ArrayList<>();
         for (int i = 0; i < postList.size(); i++) {
             fragmentList.add(new PostPageFragment());
@@ -43,7 +42,7 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return numberOfPages;
+        return fragmentList.size();
     }
 
     @Override
@@ -63,22 +62,16 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
     }
 
     private void addFragmentToList(int numberOfItemsInFragment) {
-        PostPageFragment fragment = new PostPageFragment();
-        fragment.setArguments(getValuesForFragment(numberOfItemsInFragment));
-        fragment.attachPresenter(presenter);
-        fragmentList.add(fragment);
-        numberOfPages++;
+        fragmentList.add(PostPageFragment.newInstance(getValuesForFragment(numberOfItemsInFragment)));
         notifyDataSetChanged();
     }
 
-    private Bundle getValuesForFragment(int size) {
-        Bundle values = new Bundle();
+    private ArrayList<Post> getValuesForFragment(int size) {
+        ArrayList<Post> postArrayList = new ArrayList<>();
         for (int index = 0; index < size; index++) {
-            values.putString(String.valueOf(index), String.valueOf(postList.get(0).getId()));
-            values.putString(String.valueOf(index) + TITLE_KEY,String.valueOf(postList.get(0).getTitle()));
+            postArrayList.add(postList.get(0));
             postList.remove(0);
         }
-        return values;
+        return postArrayList;
     }
-
 }

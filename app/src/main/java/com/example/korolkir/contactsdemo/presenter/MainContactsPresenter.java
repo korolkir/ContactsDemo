@@ -31,7 +31,8 @@ public class MainContactsPresenter implements ContactsPresenter {
     private Context context;
     private ContactsDbHelper contactsDbHelper;
 
-    public MainContactsPresenter(ContactsView contactsView) {
+
+    public MainContactsPresenter() {
         this.contactsView = contactsView;
         userDataModel = new UserDataRepository();
         context = (Context) contactsView;
