@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.korolkir.contactsdemo.ContactsApp;
@@ -22,17 +23,32 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 
 /**
  * Created by korolkir on 04.09.16.
  */
-public class PostsPageFragment extends Fragment implements View.OnClickListener, MainView {
+public class PostsPageFragment extends Fragment implements MainView {
 
     private static final String POST_KEY  = "posts";
     public static final String USER_ID  = "userId";
     public static final String POST_ID  = "postId";
+
+    private View.OnClickListener idItemListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onItemClick(idViews.indexOf(v));
+        }
+    };
+
+    private View.OnClickListener titleItemListenter = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            onItemClick(titleViews.indexOf(v));
+        }
+    };
 
     @BindViews({R.id.id_1, R.id.id_2, R.id.id_3, R.id.id_4, R.id.id_5, R.id.id_6})
     List<TextView> idViews;
@@ -77,7 +93,8 @@ public class PostsPageFragment extends Fragment implements View.OnClickListener,
 
     private void setOnClickListeners(int number) {
         for (int i = 0; i < number; i++) {
-            idViews.get(i).setOnClickListener(this);
+            idViews.get(i).setOnClickListener(idItemListener);
+            titleViews.get(i).setOnClickListener(titleItemListenter);
         }
     }
 
@@ -86,10 +103,8 @@ public class PostsPageFragment extends Fragment implements View.OnClickListener,
         super.onAttach(context);
     }
 
-    @Override
-    public void onClick(View v) {
-        TextView view = (TextView) v;
-        int index = idViews.indexOf(view);
+
+    public void onItemClick(int index) {
         int postId = postList.get(index).getId();
         int userId = postList.get(index).getUserId();
         presenter.onPostItemClicked(postId, userId);
@@ -110,11 +125,6 @@ public class PostsPageFragment extends Fragment implements View.OnClickListener,
         startActivity(intent);
     }
 
-    @Override
-    public void onDestroyView() {
-        presenter.detachView();
-        super.onDestroyView();
-    }
 }
 
 

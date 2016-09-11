@@ -13,42 +13,36 @@
             android:layout_height="match_parent"
             android:layout_margin="2dp">
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:id="@+id/item_1"
+                style="@style/ItemLayout">
                 <TextView
                     android:id="@+id/id_1"
-                    android:text="id"
                     style="@style/IdItem"/>
                 <TextView
                     android:id="@+id/title_1"
-                   style="@style/IdItem"
-                    android:text="title"/>
+                    style="@style/IdItem"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp">
+                android:id="@+id/item_2"
+                style="@style/ItemLayout"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp">
                 <TextView
                     android:id="@+id/id_2"
-                    android:text="id"
                     style="@style/IdItem"/>
                 <TextView
                     android:id="@+id/title_2"
-                    style="@style/IdItem"
-                    android:text="title"/>
+                    style="@style/IdItem"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:id="@+id/item_3"
+                style="@style/ItemLayout">
                 <TextView
                     android:id="@+id/id_3"
-                    android:text="id"
                     style="@style/IdItem"/>
                 <TextView
                     android:id="@+id/title_3"
-                    style="@style/IdItem"
-                    android:text="title"/>
+                    style="@style/IdItem"/>
             </LinearLayout>
         </TableRow>
         <TableRow
@@ -59,42 +53,38 @@
             android:layout_marginRight="2dp"
             android:layout_marginBottom="2dp">
             <LinearLayout
+                android:id="@+id/item_4"
                 android:layout_weight="1"
+                style="@style/ItemLayout"
                 android:orientation="vertical">
                 <TextView
                     android:id="@+id/id_4"
-                    android:text="id"
                     style="@style/IdItem"/>
                 <TextView
                     android:id="@+id/title_4"
-                    style="@style/IdItem"
-                    android:text="title"/>
+                    style="@style/IdItem"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="2dp"
-                android:paddingRight="2dp">
+                android:id="@+id/item_5"
+                android:layout_marginLeft="2dp"
+                style="@style/ItemLayout"
+                android:layout_marginRight="2dp">
                 <TextView
                     android:id="@+id/id_5"
-                    android:text="id"
                     style="@style/IdItem"/>
                 <TextView
                     android:id="@+id/title_5"
-                    style="@style/IdItem"
-                    android:text="title"/>
+                    style="@style/IdItem"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:id="@+id/item_6"
+                style="@style/ItemLayout">
                 <TextView
                     android:id="@+id/id_6"
-                    android:text="id"
                     style="@style/IdItem"/>
                 <TextView
                     android:id="@+id/title_6"
-                    style="@style/IdItem"
-                    android:text="title"/>
+                    style="@style/IdItem"/>
             </LinearLayout>
         </TableRow>
     </TableLayout>

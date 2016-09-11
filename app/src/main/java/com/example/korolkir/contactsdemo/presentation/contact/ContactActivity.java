@@ -15,19 +15,19 @@ import com.example.korolkir.contactsdemo.R;
 import com.example.korolkir.contactsdemo.domain.entity.Contact;
 import com.example.korolkir.contactsdemo.presentation.common.BaseActivity;
 import com.example.korolkir.contactsdemo.presentation.common.MainView;
+import com.example.korolkir.contactsdemo.presentation.map.MapActivity;
 import com.example.korolkir.contactsdemo.presentation.posts.PostsPageFragment;
 import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ContactActivity extends BaseActivity implements ContactView, MainView {
 
-    protected static final String LAT = "lat";
-    protected static final String LNG = "lng";
+    public static final String LAT = "lat";
+    public static final String LNG = "lng";
     private int postId;
 
     @Inject

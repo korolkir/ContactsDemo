@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".presentation.contact.ContactActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".presentation.contact.MapActivity"
+        <activity android:name=".presentation.map.MapActivity"
             android:screenOrientation="portrait">
         </activity>
         <meta-data

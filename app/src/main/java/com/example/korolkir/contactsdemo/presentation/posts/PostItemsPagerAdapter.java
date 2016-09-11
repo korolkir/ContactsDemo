@@ -3,6 +3,8 @@ package com.example.korolkir.contactsdemo.presentation.posts;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.example.korolkir.contactsdemo.domain.entity.Post;
@@ -14,8 +16,7 @@ import java.util.List;
 /**
  * Created by korolkir on 04.09.16.
  */
-   // new Instance for fragments
-public class PostItemsPagerAdapter extends FragmentPagerAdapter {
+public class PostItemsPagerAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener{
 
     private static final int ITEMS_PER_PAGE = 6;
     private List<Post> postList;
@@ -25,6 +26,7 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         this.postList = new ArrayList<>();
         this.fragmentList = new ArrayList<>();
+
     }
 
     @Override
@@ -66,5 +68,20 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter {
             postList.remove(first);
         }
         return postArrayList;
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        Log.i("Pager", String.valueOf(position));
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

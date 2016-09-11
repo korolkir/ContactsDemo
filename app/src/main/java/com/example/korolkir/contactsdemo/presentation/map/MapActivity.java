@@ -1,4 +1,4 @@
-package com.example.korolkir.contactsdemo.presentation.contact;
+package com.example.korolkir.contactsdemo.presentation.map;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
