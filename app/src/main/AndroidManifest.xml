@@ -8,13 +8,13 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".ContactsApplication"
+        android:name=".ContactsApp"
         android:allowBackup="true"
         android:icon="@mipmap/launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.MainActivity"
+        <activity android:name=".presentation.posts.PostsActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.ContactActivity"
+        <activity android:name=".presentation.contact.ContactActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".view.MapActivity"
+        <activity android:name=".presentation.contact.MapActivity"
             android:screenOrientation="portrait">
         </activity>
         <meta-data
