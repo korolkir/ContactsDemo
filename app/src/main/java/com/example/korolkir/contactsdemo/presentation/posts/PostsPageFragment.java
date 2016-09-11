@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.korolkir.contactsdemo.ContactsApp;
@@ -23,7 +22,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 
@@ -43,7 +41,7 @@ public class PostsPageFragment extends Fragment implements MainView {
         }
     };
 
-    private View.OnClickListener titleItemListenter = new View.OnClickListener() {
+    private View.OnClickListener titleItemListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             onItemClick(titleViews.indexOf(v));
@@ -94,7 +92,7 @@ public class PostsPageFragment extends Fragment implements MainView {
     private void setOnClickListeners(int number) {
         for (int i = 0; i < number; i++) {
             idViews.get(i).setOnClickListener(idItemListener);
-            titleViews.get(i).setOnClickListener(titleItemListenter);
+            titleViews.get(i).setOnClickListener(titleItemListener);
         }
     }
 
@@ -102,7 +100,6 @@ public class PostsPageFragment extends Fragment implements MainView {
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-
 
     public void onItemClick(int index) {
         int postId = postList.get(index).getId();

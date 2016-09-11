@@ -2,8 +2,8 @@ package com.example.korolkir.contactsdemo.presentation.posts;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.util.Log;
 
+import com.example.korolkir.contactsdemo.data.StringFormatConstants;
 import com.example.korolkir.contactsdemo.domain.PostUnit;
 import com.example.korolkir.contactsdemo.domain.entity.Post;
 import com.example.korolkir.contactsdemo.presentation.common.BasePresenter;
@@ -73,14 +73,14 @@ public class PostsPresenter extends BasePresenter<PostsActivity> {
     }
 
     private String saveLogInFile() {
-        String logFileName = "logcat_"+System.currentTimeMillis()+".txt";
+        String logFileName = String.format(StringFormatConstants.LOG_FILE_NAME, System.currentTimeMillis());
         File outputFile = new File(context.getExternalCacheDir(), logFileName);
         try {
             @SuppressWarnings("unused")
-            Process process = Runtime.getRuntime().exec("logcat -f "+outputFile.getAbsolutePath());
+            Process process = Runtime.getRuntime().exec(String.format(StringFormatConstants.LOG_FILE_PATH,
+                    outputFile.getAbsolutePath()));
             return logFileName;
         } catch (IOException e) {
-            Log.i("FileSav", e.toString());
             e.printStackTrace();
         }
         return null;
@@ -111,8 +111,6 @@ public class PostsPresenter extends BasePresenter<PostsActivity> {
             mainView.askToEnableNetwork();
         }
     }
-
-
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
