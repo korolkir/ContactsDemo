@@ -77,6 +77,7 @@ public class PostsPageFragment extends Fragment implements MainView {
         ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.item_layout, container, false);
         ButterKnife.bind(this, rootView);
+        presenter.onViewCreated();
         Bundle contacts = getArguments();
         postList = contacts.getParcelableArrayList(POST_KEY);
         if (!postList.isEmpty()) {

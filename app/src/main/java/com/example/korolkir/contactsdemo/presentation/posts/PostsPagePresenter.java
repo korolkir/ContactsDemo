@@ -31,12 +31,6 @@ public class PostsPagePresenter extends BasePresenter<PostsPageFragment> {
         mainView.showPostWithId(postId, userId);
     }
 
-    @Override
-    public void attachView(PostsPageFragment view) {
-        super.attachView(view);
-        setItemsBackgrounds();
-    }
-
     private void setItemsBackgrounds() {
         final int[] colors = context.getResources().getIntArray(R.array.idItemColors);
         RandomGenerator.randomIntegerObservable(6, 0, colors.length - 1).subscribe(new Subscriber<Integer>() {
@@ -60,4 +54,7 @@ public class PostsPagePresenter extends BasePresenter<PostsPageFragment> {
         });
     }
 
+    public void onViewCreated() {
+        setItemsBackgrounds();
+    }
 }
