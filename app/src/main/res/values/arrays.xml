@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="idItemColors">
+        <item>@color/idItemColor1</item>
+        <item>@color/idItemColor2</item>
+        <item>@color/idItemColor3</item>
+        <item>@color/idItemColor4</item>
+        <item>@color/idItemColor5</item>
+        <item>@color/idItemColor6</item>
+        <item>@color/idItemColor7</item>
+        <item>@color/idItemColor8</item>
+        <item>@color/idItemColor9</item>
+        <item>@color/idItemColor10</item>
+        <item>@color/idItemColor11</item>
+        <item>@color/idItemColor12</item>
+        <item>@color/idItemColor13</item>
+        <item>@color/idItemColor14</item>
+        <item>@color/idItemColor15</item>
+        <item>@color/idItemColor16</item>
+        <item>@color/idItemColor17</item>
+        <item>@color/idItemColor18</item>
+        <item>@color/idItemColor19</item>
+    </array>
+</resources>

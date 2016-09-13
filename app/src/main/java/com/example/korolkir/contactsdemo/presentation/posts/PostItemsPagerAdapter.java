@@ -3,8 +3,7 @@ package com.example.korolkir.contactsdemo.presentation.posts;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
+
 import android.view.ViewGroup;
 
 import com.example.korolkir.contactsdemo.domain.entity.Post;
@@ -12,6 +11,8 @@ import com.example.korolkir.contactsdemo.domain.entity.Post;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindColor;
 
 /**
  * Created by korolkir on 04.09.16.

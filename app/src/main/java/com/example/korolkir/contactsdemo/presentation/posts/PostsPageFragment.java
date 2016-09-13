@@ -6,13 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.korolkir.contactsdemo.ContactsApp;
 import com.example.korolkir.contactsdemo.R;
+import com.example.korolkir.contactsdemo.data.RandomGenerator;
 import com.example.korolkir.contactsdemo.domain.entity.Post;
 import com.example.korolkir.contactsdemo.presentation.common.MainView;
 import com.example.korolkir.contactsdemo.presentation.contact.ContactActivity;
@@ -24,6 +27,7 @@ import javax.inject.Inject;
 
 import butterknife.BindViews;
 import butterknife.ButterKnife;
+import rx.Subscriber;
 
 /**
  * Created by korolkir on 04.09.16.
@@ -52,6 +56,8 @@ public class PostsPageFragment extends Fragment implements MainView {
     List<TextView> idViews;
     @BindViews({R.id.title_1, R.id.title_2, R.id.title_3, R.id.title_4, R.id.title_5, R.id.title_6})
     List<TextView> titleViews;
+    @BindViews({R.id.item_1, R.id.item_2, R.id.item_3, R.id.item_4, R.id.item_5, R.id.item_6})
+    List<LinearLayout> itemLayouts;
     List<Post> postList;
 
     @Inject
@@ -122,6 +128,9 @@ public class PostsPageFragment extends Fragment implements MainView {
         startActivity(intent);
     }
 
+    public void setItemColor(int itemIndex, int color) {
+        itemLayouts.get(itemIndex).setBackgroundColor(color);
+    }
 }
 
 

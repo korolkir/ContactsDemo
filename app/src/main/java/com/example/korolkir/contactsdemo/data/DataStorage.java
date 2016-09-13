@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.korolkir.contactsdemo.domain.ContactStorage;
 import com.example.korolkir.contactsdemo.domain.entity.Address;
 import com.example.korolkir.contactsdemo.domain.entity.Contact;
 

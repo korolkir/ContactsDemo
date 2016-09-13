@@ -3,7 +3,7 @@ package com.example.korolkir.contactsdemo.injection.modules;
 import android.content.Context;
 
 import com.example.korolkir.contactsdemo.data.DataStorage;
-import com.example.korolkir.contactsdemo.domain.ContactStorage;
+import com.example.korolkir.contactsdemo.data.ContactStorage;
 
 import javax.inject.Singleton;
 

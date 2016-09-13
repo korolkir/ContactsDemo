@@ -1,4 +1,4 @@
-package com.example.korolkir.contactsdemo.domain;
+package com.example.korolkir.contactsdemo.data;
 
 import com.example.korolkir.contactsdemo.domain.entity.Contact;
 
