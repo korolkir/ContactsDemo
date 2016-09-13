@@ -3,7 +3,7 @@ package com.example.korolkir.contactsdemo.presentation.posts;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
-import com.example.korolkir.contactsdemo.data.StringFormatConstants;
+import com.example.korolkir.contactsdemo.data.LogConstants;
 import com.example.korolkir.contactsdemo.domain.PostUnit;
 import com.example.korolkir.contactsdemo.domain.entity.Post;
 import com.example.korolkir.contactsdemo.presentation.common.BasePresenter;
@@ -49,9 +49,9 @@ public class PostsPresenter extends BasePresenter<PostsActivity> {
             }
 
             @Override
-            public void onNext(String filemame) {
-                if (filemame != null) {
-                    mainView.showLogSavingResult(filemame);
+            public void onNext(String filename) {
+                if (filename != null) {
+                    mainView.showLogSavingResult(filename);
                 } else {
                     mainView.showLogSavingResult(null);
                 }
@@ -73,11 +73,11 @@ public class PostsPresenter extends BasePresenter<PostsActivity> {
     }
 
     private String saveLogInFile() {
-        String logFileName = String.format(StringFormatConstants.LOG_FILE_NAME, System.currentTimeMillis());
+        String logFileName = String.format(LogConstants.LOG_FILE_NAME, System.currentTimeMillis());
         File outputFile = new File(context.getExternalCacheDir(), logFileName);
         try {
             @SuppressWarnings("unused")
-            Process process = Runtime.getRuntime().exec(String.format(StringFormatConstants.LOG_FILE_PATH,
+            Process process = Runtime.getRuntime().exec(String.format(LogConstants.LOG_FILE_PATH,
                     outputFile.getAbsolutePath()));
             return logFileName;
         } catch (IOException e) {

@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by korolkir on 04.09.16.
  */
-public class PostItemsPagerAdapter extends FragmentPagerAdapter implements ViewPager.OnPageChangeListener{
+public class PostItemsPagerAdapter extends FragmentPagerAdapter {
 
     private static final int ITEMS_PER_PAGE = 6;
     private List<Post> postList;
@@ -68,20 +68,5 @@ public class PostItemsPagerAdapter extends FragmentPagerAdapter implements ViewP
             postList.remove(first);
         }
         return postArrayList;
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        Log.i("Pager", String.valueOf(position));
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
     }
 }

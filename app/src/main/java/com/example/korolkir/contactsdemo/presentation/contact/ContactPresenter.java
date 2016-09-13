@@ -70,6 +70,5 @@ public class ContactPresenter extends BasePresenter<ContactActivity> {
         } else {
             mainView.saveError();
         }
-        Log.i("Database", String.valueOf(dataStorage.getContacts().size()));
     }
 }

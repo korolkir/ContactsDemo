@@ -24,7 +24,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class ContactActivity extends BaseActivity implements ContactView, MainView {
+public class ContactActivity extends BaseActivity implements ContactView {
 
     public static final String LAT = "lat";
     public static final String LNG = "lng";
